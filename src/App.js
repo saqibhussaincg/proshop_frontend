@@ -14,6 +14,7 @@ function App() {
       <Container>
     <Routes>
         <Route path="/" element={<HomeScreen />}></Route>
+  {/* product path ka naam hai koi component nahi jo k Product.js walay component se araha hai */}
         <Route path="/product/:id" element={<ProductScreen />}></Route>
     </Routes>
       </Container>

@@ -8,15 +8,16 @@ const HomeScreen = () => {
        <h1>Latest Products</h1>
 
        <Row>
-          {products.map( (item, index) => {
+          {products.map( (item) => {
               return(
               <Col key={item._id} sm={12} md={6} lg={4} xl={3}>
-                  {/* <h3>{product.name}</h3> */}
-                  <Product product={item} />
+                  <Product productedProp={item} />
               </Col>
               )
           })}  
        </Row>
+
+       
    </>
   )
 }

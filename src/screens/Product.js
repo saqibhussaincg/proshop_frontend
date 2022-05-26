@@ -3,30 +3,32 @@ import { Link } from 'react-router-dom'
 import { Card } from 'react-bootstrap'
 import Rating from './Rating'
 
-const Product = ({ product }) => {
+const Product = ({ productedProp }) => {
   return (
     <Card className='my-3 p-3 rounded'>
-      <Link to={`/product/${product._id}`}>
-        <Card.Img src={product.image} variant='top' />
+      <Link to={`/product/${productedProp._id}`}>
+        <Card.Img src={productedProp.image} variant='top' />
       </Link>
 
+{/* product naam hai a href="product" jo k app k path mai call ho raha hai ye koi component nahi hai */}
+
       <Card.Body>
-        <Link to={`/product/${product._id}`}>
+        <Link to={`/product/${productedProp._id}`}>
           <Card.Title as='div'>
-          <strong>{product.name}</strong>
+          <strong>{productedProp.name}</strong>
           </Card.Title>
         </Link>
 
         <Card.Text as='div'>
           <Rating 
-            value={product.rating}
-            text={`${product.numReviews} reviews`}
+            value={productedProp.rating}
+            text={`${productedProp.numReviews} reviews`}
           />
         </Card.Text>
 
    
         <Card.Text as='h3'>
-          ${product.price}
+          ${productedProp.price}
         </Card.Text>
 
       </Card.Body>
@@ -37,7 +39,7 @@ const Product = ({ product }) => {
 
 export default Product
 
-// Andchor Tag Will Replace By LINK
+// Anchor Tag Will Replace By LINK
 
 {/* <Card className='my-3 p-3 rounded'>
       <a href={`/product/${product._id}`}>
