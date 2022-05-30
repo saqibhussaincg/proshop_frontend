@@ -78,14 +78,15 @@ const Rating = ({value, text, color}) => {
 
 // Default color de dia likhne ki need nahi hoi
 Rating.defaultProps = {
-    color: '#f8e825'
+    color: '#f8e825',
+    rating: 0,
 }
 
 // Props mai strict condition laga din
-Rating.propTypes = {
-    value : PropTypes.number.isRequired,
-    text : PropTypes.string.isRequired,
-    color : PropTypes.string.isRequired,
-}
+// Rating.propTypes = {
+//     value : PropTypes.number.isRequired,
+//     text : PropTypes.string.isRequired,
+//     color : PropTypes.string.isRequired,
+// }
 
 export default Rating

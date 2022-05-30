@@ -1,17 +1,37 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Card, Button, ListGroupItem } from 'react-bootstrap'
-import products from '../products'
+// import products from '../products'
 import Rating from './Rating'
+import axios from 'axios'
 
 
 
 const ProductScreen = () => {
 
+  const [product, setProduct] = useState({})
+  
+  const { id } = useParams();
+  
+  useEffect(() => {
+    console.log('product screen useEffect');
+    
+
+    const fetchSingleProduct = async () => {
+        const { data } = await axios.get(`/api/products/${id}`)
+
+        setProduct(data)
+
+      }
+      
+      fetchSingleProduct()
+    },[])
+
+    
 // id get karo useparams se or products wali api mai ne find karo _id or match  karo os ki id ko 
 
-  const { id } = useParams();
-  const product = products.find((p) => p._id === id);
+
+  // const product = products.find((p) => p._id === id);
 
 
   return (
@@ -20,24 +40,24 @@ const ProductScreen = () => {
       <Link className='btn btn-light my-3' to="/">Go Back</Link>
       <Row>
         <Col md={6}>
-        <Image src={product.image} alt={product.name} fluid /> 
+        <Image src={product?.image} alt={product?.name} fluid /> 
         </Col>
         <Col md={3}>
           <ListGroup variant='flush'>
             <ListGroupItem>
-              <h3> {product.name} </h3>
+              <h3> {product?.name} </h3>
             </ListGroupItem>
 
             <ListGroupItem>
-              <Rating  value={product.rating} text={`${product.numReviews} reviews`}/>
+              <Rating  value={product?.rating} text={`${product?.numReviews} reviews`}/>
             </ListGroupItem>
 
             <ListGroupItem>
-              Price: ${product.price}
+              Price: ${product?.price}
             </ListGroupItem>
 
             <ListGroupItem>
-              Description: {product.description}
+              Description: {product?.description}
             </ListGroupItem>
           </ListGroup>
         </Col>
@@ -50,7 +70,7 @@ const ProductScreen = () => {
                   <Row>
                     <Col>Price:</Col>
                     <Col>
-                      <strong>${product.price}</strong>
+                      <strong>${product?.price}</strong>
                     </Col>
                   </Row>
                 </ListGroupItem>
@@ -59,14 +79,14 @@ const ProductScreen = () => {
                   <Row>
                     <Col>Status:</Col>
                     <Col>
-                      {product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
+                      {product?.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
                     </Col>
                   </Row>
                 </ListGroupItem>
 
                 <ListGroupItem>
                   <Button className='btn-block' type='button'
-                  disabled={product.countInStock === 0}
+                  disabled={product?.countInStock === 0}
                   >Add To Cart</Button>
                 </ListGroupItem>
             </ListGroup>
